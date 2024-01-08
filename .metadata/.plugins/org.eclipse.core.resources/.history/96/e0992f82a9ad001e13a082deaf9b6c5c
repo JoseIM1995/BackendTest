@@ -1,0 +1,53 @@
+package com.test.application.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.test.application.repository.EmployeeRepository;
+import com.test.application.repository.GenderRepository;
+import com.test.application.repository.JobRepository;
+import com.test.application.request.EmployeesByJobRequest;
+import com.test.application.response.EmployeesByJobResponse;
+
+@Service
+public class EmployeeByJobService {
+	@Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private JobRepository jobRepository;
+    @Autowired
+    private GenderRepository genderRepository;
+
+    public EmployeesByJobResponse getEmployeesByJob(EmployeesByJobRequest request) {
+        EmployeesByJobResponse response = new EmployeesByJobResponse();
+
+        // Validar que el puesto exista
+        Optional<Job> jobOptional = jobRepository.findById(request.getJobId());
+
+        if (jobOptional.isPresent()) {
+            Job job = jobOptional.get();
+
+            // Buscar empleados por el puesto
+            List<Employee> employees = employeeRepository.findByJob(job);
+
+            // Construir la lista de EmployeeByJob
+            List<EmployeeByJob> employeesByJob = new ArrayList<>();
+
+            for (Employee employee : employees) {
+                EmployeeByJob employeeByJob = new EmployeeByJob();
+                // Copiar los datos relevantes desde Employee a EmployeeByJob
+                // ...
+
+                employeesByJob.add(employeeByJob);
+            }
+
+            response.setEmployees(employeesByJob);
+            response.setSuccess(true);
+        } else {
+            response.setEmployees(null);
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+}

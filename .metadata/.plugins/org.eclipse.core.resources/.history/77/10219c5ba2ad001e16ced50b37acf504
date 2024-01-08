@@ -1,0 +1,23 @@
+package com.test.application.response;
+
+import java.math.BigDecimal;
+
+public class EmployeeSalaryResponse {
+
+	private BigDecimal payment;
+    private boolean success;
+    
+	public BigDecimal getPayment() {
+		return payment;
+	}
+	public void setPayment(BigDecimal payment) {
+		this.payment = payment;
+	}
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+    
+}

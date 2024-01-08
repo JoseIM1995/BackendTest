@@ -1,0 +1,7 @@
+spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=PruebaBackend
+spring.datasource.username=sa
+spring.datasource.password=87654321
+spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServer2012Dialect
+server.port=8080
+server.servlet.context-path=/TestBackend

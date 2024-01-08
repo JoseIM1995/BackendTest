@@ -1,0 +1,5 @@
+package com.test.application.entity;
+
+public class EmployeeWorkedHours {
+
+}

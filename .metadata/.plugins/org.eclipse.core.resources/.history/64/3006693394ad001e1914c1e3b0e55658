@@ -1,0 +1,62 @@
+package com.test.application.controller;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.test.application.entity.Employee;
+import com.test.application.request.EmployeeRequest;
+import com.test.application.request.EmployeesByJobRequest;
+import com.test.application.response.EmployeeResponse;
+import com.test.application.response.EmployeesByJobResponse;
+import com.test.application.service.EmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+	@Autowired
+    private EmployeeService employeeService;
+
+    @PostMapping("/add")
+    public EmployeeResponse addEmployee(@RequestBody EmployeeRequest request) {
+        return employeeService.addEmployee(request);
+    }
+    
+    @PostMapping("/by-job")
+    public EmployeesByJobResponse getEmployeesByJob(@RequestBody EmployeesByJobRequest request) {
+        EmployeesByJobResponse response = new EmployeesByJobResponse();
+
+        // Validar que el puesto exista (puedes agregar esta lógica en tu servicio)
+        if (employeeService.isValidJob(request.getJobId())) {
+            List<Employee> employees = employeeService.getEmployeesByJob(request.getJobId());
+
+            List<EmployeeResponse> employeeResponses = new ArrayList<>();
+
+            for (Employee employee : employees) {
+                EmployeeResponse employeeResponse = new EmployeeResponse();
+                employeeResponse.setId(employee.getId());
+                employeeResponse.setName(employee.getName());
+                employeeResponse.setLastName(employee.getLastName());
+                // Ajusta el formato de fecha según tu preferencia
+                employeeResponse.setBirthdate(/* Formato de fecha */);
+                employeeResponse.setJob(/* Crea un objeto de respuesta para el puesto */);
+                employeeResponse.setGender(/* Crea un objeto de respuesta para el género */);
+                employeeResponses.add(employeeResponse);
+            }
+
+            response.setEmployees(employeeResponses);
+            response.setSuccess(true);
+        } else {
+            response.setEmployees(Collections.emptyList());
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+
+}

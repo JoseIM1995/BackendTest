@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.test.application.service.EmployeeService"/>
+    <fullyQualifiedTypeName name="com.test.application.response.EmployeeResponse"/>
+    <fullyQualifiedTypeName name="com.test.application.request.EmployeeRequest"/>
+    <fullyQualifiedTypeName name="java.util.Calendar"/>
+    <fullyQualifiedTypeName name="com.test.application.respository.GenderRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.respository.JobRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.service.EmployeeWorkedHoursService"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.entity.EmployeeWorkedHours"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="com.test.application.respository.EmployeeWorkedHoursRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.respository.EmployeeRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.response.EmployeeWorkedHoursResponse"/>
+    <fullyQualifiedTypeName name="com.test.application.request.EmployeeWorkedHoursRequest"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="com.test.application.entity.Gender"/>
+    <fullyQualifiedTypeName name="com.test.application.response.EmployeeWorkedHoursRangeResponse"/>
+    <fullyQualifiedTypeName name="com.test.application.service.EmployeeWorkedHoursRangeService"/>
+    <fullyQualifiedTypeName name="com.test.application.request.EmployeeWorkedHoursRangeRequest"/>
+    <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+    <fullyQualifiedTypeName name="com.test.application.request.EmployeeSalaryRequest"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.test.application.repository.EmployeeRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.repository.JobRepository"/>
+    <fullyQualifiedTypeName name="com.test.application.repository.GenderRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.test.application.service.EmployeeByJobService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="com.test.application.response.EmployeesByJobResponse"/>
+    <fullyQualifiedTypeName name="com.test.application.request.EmployeesByJobRequest"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.test.application.entity.Job"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.test.application.entity.Employee"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="com.test.application.entity.EmployeeByJob"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+</qualifiedTypeNameHistroy>

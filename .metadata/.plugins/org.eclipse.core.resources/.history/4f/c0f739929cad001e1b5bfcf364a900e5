@@ -1,0 +1,5 @@
+package com.test.application.service;
+
+public class EmployeeWorkedHoursRangeService {
+
+}

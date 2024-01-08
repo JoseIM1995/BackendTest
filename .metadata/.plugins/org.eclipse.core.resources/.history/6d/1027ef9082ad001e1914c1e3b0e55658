@@ -1,0 +1,12 @@
+package com.test.application.utils;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+public class DateUtils {
+
+	public static LocalDate convertToDateToLocalDate(LocalDate date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+}

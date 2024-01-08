@@ -1,0 +1,25 @@
+package com.test.application.response;
+
+import com.test.application.entity.EmployeeByJob;
+
+import java.util.List;
+
+public class EmployeesByJobResponse {
+	
+	private List<EmployeeByJob> employees;
+    private boolean success;
+    
+	public List<EmployeeByJob> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<EmployeeByJob> employees) {
+		this.employees = employees;
+	}
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+
+}

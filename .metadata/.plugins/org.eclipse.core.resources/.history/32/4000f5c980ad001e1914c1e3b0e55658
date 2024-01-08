@@ -1,0 +1,9 @@
+package com.test.application.respository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.test.application.entity.Gender;
+
+public interface GenderRepository extends JpaRepository<Gender, Integer>{
+
+}

@@ -1,0 +1,16 @@
+package com.test.application.response;
+
+import java.util.List;
+
+public class EmployeeResponse {
+	
+    private boolean success;
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+}

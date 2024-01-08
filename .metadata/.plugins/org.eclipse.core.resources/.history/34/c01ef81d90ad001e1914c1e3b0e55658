@@ -1,0 +1,9 @@
+package com.test.application.response;
+
+import com.test.application.entity.Employee;
+
+import java.util.List;
+
+public class EmployeesByJobResponse {
+
+}

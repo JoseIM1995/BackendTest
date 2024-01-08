@@ -1,0 +1,64 @@
+package com.test.application.service;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.test.application.entity.Employee;
+import com.test.application.repository.EmployeeRepository;
+import com.test.application.request.EmployeeWorkedHoursRangeRequest;
+import com.test.application.response.EmployeeWorkedHoursRangeResponse;
+
+@Service
+public class EmployeeWorkedHoursRangeService {
+	 @Autowired
+	    private EmployeeRepository employeeRepository;
+
+	    public EmployeeWorkedHoursRangeResponse getTotalWorkedHours(EmployeeWorkedHoursRangeRequest request) {
+	        EmployeeWorkedHoursRangeResponse response = new EmployeeWorkedHoursRangeResponse();
+
+	        // Validar que el empleado exista
+	        Optional<Employee> employeeOptional = employeeRepository.findById(request.getEmployeeId());
+
+	        if (employeeOptional.isPresent()) {
+	            Employee employee = employeeOptional.get();
+
+	            // Validar que la fecha de inicio sea menor que la fecha de fin
+	            if (!request.getStartDate().isAfter(request.getEndDate())) {
+	                // Aquí puedes agregar la lógica para calcular el total de horas trabajadas
+	                // del empleado en el rango de fechas especificado
+	                // Puedes consultar los registros de horas trabajadas en la base de datos
+	                // y calcular la suma de las horas trabajadas en ese rango.
+	                
+	                // Supongamos que calculas el total de horas trabajadas y lo asignas a "totalHours"
+	                int totalHours = calcularTotalHorasTrabajadas(employee, request.getStartDate(), request.getEndDate());
+
+	                response.setTotalWorkedHours(totalHours);
+	                response.setSuccess(true);
+	            } else {
+	                response.setTotalWorkedHours(null);
+	                response.setSuccess(false);
+	            }
+	        } else {
+	            response.setTotalWorkedHours(null);
+	            response.setSuccess(false);
+	        }
+
+	        return response;
+	    }
+
+	    // Aquí puedes agregar la lógica para calcular el total de horas trabajadas por el empleado
+	    private int calcularTotalHorasTrabajadas(Employee employee, LocalDate startDate, LocalDate endDate) {
+	        // Lógica para calcular el total de horas trabajadas
+	        // Puedes consultar los registros de horas trabajadas en la base de datos
+	        // y calcular la suma de las horas trabajadas en ese rango.
+	        // Por ejemplo, puedes utilizar el repositorio EmployeeWorkedHoursRepository.
+	        // Aquí se muestra una estructura básica, pero debes implementar la lógica real.
+	        // int totalHours = employeeWorkedHoursRepository.sumTotalWorkedHours(employee, startDate, endDate);
+	        int totalHours = 0; // Debes calcular el valor real
+
+	        return totalHours;
+	    }
+}

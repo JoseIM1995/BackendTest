@@ -1,0 +1,34 @@
+package com.test.application.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.test.application.entity.Employee;
+import com.test.application.repository.EmployeeRepository;
+import com.test.application.request.EmployeesByJobRequest;
+import com.test.application.response.EmployeesByJobResponse;
+
+@Service
+public class EmployeesByJobService {
+	@Autowired
+    private EmployeeRepository employeeRepository;
+
+    public EmployeesByJobResponse getEmployeesByJob(EmployeesByJobRequest request) {
+        EmployeesByJobResponse response = new EmployeesByJobResponse();
+
+        // Validar que el puesto exista
+        // Aquí puedes agregar la lógica para buscar el trabajo por ID en el repositorio de trabajos (JobRepository)
+        // Si el trabajo no existe, establece response.setSuccess(false) y retorna la respuesta.
+
+        // Si el trabajo existe, obtén la lista de empleados por ese trabajo
+        List<Employee> employees = employeeRepository.findByJobId(request.getJobId());
+
+        response.setEmployees(employees);
+        response.setSuccess(true);
+
+        return response;
+    }
+}

@@ -1,0 +1,6 @@
+package com.test.application.response;
+
+public class EmployeeResponse {
+	private Integer id;
+    private boolean success;
+}

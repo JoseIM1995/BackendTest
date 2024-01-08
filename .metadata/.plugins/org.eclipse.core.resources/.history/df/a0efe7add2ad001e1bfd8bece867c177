@@ -1,0 +1,69 @@
+package com.test.application.service;
+
+import java.time.LocalDate;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.test.application.entity.Employee;
+import com.test.application.entity.EmployeeWorkedHours;
+import com.test.application.request.EmployeeWorkedHoursRequest;
+import com.test.application.response.EmployeeWorkedHoursResponse;
+import com.test.application.repository.EmployeeRepository;
+import com.test.application.repository.EmployeeWorkedHoursRepository;
+
+@Service
+public class EmployeeWorkedHoursService {
+    @Autowired
+    private EmployeeWorkedHoursRepository employeeWorkedHoursRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public EmployeeWorkedHoursResponse addWorkedHours(EmployeeWorkedHoursRequest request) {
+        EmployeeWorkedHoursResponse response = new EmployeeWorkedHoursResponse();
+
+        Optional<Employee> employeeOptional = employeeRepository.findById(request.getEmployeeId());
+
+        if (employeeOptional.isPresent()) {
+            Employee employee = employeeOptional.get();
+
+            if (request.getWorkedHours() <= 20) {
+                // Validar que la fecha de trabajo sea menor o igual a la actual
+                LocalDate currentDate = LocalDate.now();
+
+                if (!request.getWorkedDate().isAfter(currentDate)) {
+                    // Validar que no haya registros duplicados para el mismo empleado en la misma fecha
+                    if (!employeeWorkedHoursRepository.existsByEmployeeAndWorkedDate(employee, request.getWorkedDate())) {
+                        // Crear y guardar el registro de horas trabajadas
+                        EmployeeWorkedHours workedHours = new EmployeeWorkedHours();
+                        workedHours.setEmployee(employee);
+                        workedHours.setWorkedHours(request.getWorkedHours());
+                        workedHours.setWorkedDate(request.getWorkedDate());
+
+                        EmployeeWorkedHours savedWorkedHours = employeeWorkedHoursRepository.save(workedHours);
+
+                        response.setId(savedWorkedHours.getId());
+                        response.setSuccess(true);
+                    } else {
+                        response.setId(null);
+                        response.setSuccess(false);
+                    }
+                } else {
+                    response.setId(null);
+                    response.setSuccess(false);
+                }
+            } else {
+                response.setId(null);
+                response.setSuccess(false);
+            }
+        } else {
+            response.setId(null);
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+}
+

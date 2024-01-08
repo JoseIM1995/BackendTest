@@ -1,0 +1,59 @@
+@Service
+public class EmployeesByJobService {
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private JobRepository jobRepository;
+
+    public EmployeesByJobResponse getEmployeesByJob(EmployeesByJobRequest request) {
+        EmployeesByJobResponse response = new EmployeesByJobResponse();
+
+        // Validar que el puesto exista
+        Optional<Job> jobOptional = jobRepository.findById(request.getJobId());
+
+        if (jobOptional.isPresent()) {
+            Job job = jobOptional.get();
+
+            // Obtener la lista de empleados por el trabajo
+            List<Employee> employees = employeeRepository.findByJobId(job.getId());
+
+            // Mapear los datos necesarios en el resultado
+            List<EmployeeByJob> employeesByJob = new ArrayList<>();
+
+            for (Employee employee : employees) {
+                EmployeeByJob employeeByJob = new EmployeeByJob();
+                employeeByJob.setId(employee.getId());
+                employeeByJob.setName(employee.getName());
+                employeeByJob.setLastName(employee.getLastName());
+                employeeByJob.setBirthdate(employee.getBirthdate());
+
+                // Mapear los datos de JOB y GENDER
+                if (employee.getJob() != null) {
+                    EmployeeJob employeeJob = new EmployeeJob();
+                    employeeJob.setId(employee.getJob().getId());
+                    employeeJob.setName(employee.getJob().getName());
+                    employeeJob.setSalary(employee.getJob().getSalary());
+                    employeeByJob.setJob(employeeJob);
+                }
+
+                if (employee.getGender() != null) {
+                    EmployeeGender employeeGender = new EmployeeGender();
+                    employeeGender.setId(employee.getGender().getId());
+                    employeeGender.setName(employee.getGender().getName());
+                    employeeByJob.setGender(employeeGender);
+                }
+
+                employeesByJob.add(employeeByJob);
+            }
+
+            response.setEmployees(employeesByJob);
+            response.setSuccess(true);
+        } else {
+            response.setEmployees(null);
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+}

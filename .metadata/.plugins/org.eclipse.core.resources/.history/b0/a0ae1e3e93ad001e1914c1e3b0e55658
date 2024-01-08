@@ -1,0 +1,47 @@
+package com.test.application.controller;
+
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.test.application.entity.Employee;
+import com.test.application.request.EmployeeRequest;
+import com.test.application.request.EmployeesByJobRequest;
+import com.test.application.response.EmployeeResponse;
+import com.test.application.response.EmployeesByJobResponse;
+import com.test.application.service.EmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+	@Autowired
+    private EmployeeService employeeService;
+
+    @PostMapping("/add")
+    public EmployeeResponse addEmployee(@RequestBody EmployeeRequest request) {
+        return employeeService.addEmployee(request);
+    }
+    
+    @PostMapping("/by-job")
+    public EmployeesByJobResponse getEmployeesByJob(@RequestBody EmployeesByJobRequest request) {
+        EmployeesByJobResponse response = new EmployeesByJobResponse();
+
+        // Validar que el puesto exista (puedes agregar esta lógica en tu servicio)
+        if (employeeService.isValidJob(request.getJobId())) {
+            // Agregar la lógica para obtener la lista de empleados con el job_id aquí
+            // Por simplicidad, dejaremos la lista de empleados vacía en esta respuesta
+            response.setEmployees(Collections.emptyList());
+            response.setSuccess(true);
+        } else {
+            response.setEmployees(Collections.emptyList());
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+}

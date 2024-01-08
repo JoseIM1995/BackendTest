@@ -1,0 +1,14 @@
+package com.test.application.request;
+
+public class EmployeesByJobRequest {
+	
+	private Integer jobId;
+
+    public Integer getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(Integer jobId) {
+        this.jobId = jobId;
+    }
+}

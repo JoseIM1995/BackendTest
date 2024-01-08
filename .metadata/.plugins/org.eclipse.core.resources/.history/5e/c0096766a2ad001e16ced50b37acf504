@@ -1,0 +1,56 @@
+package com.test.application.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Optional;
+
+import com.test.application.entity.Employee;
+import com.test.application.entity.EmployeePayment;
+import com.test.application.repository.EmployeePaymentRepository;
+import com.test.application.repository.EmployeeRepository;
+import com.test.application.request.EmployeeSalaryRequest;
+import com.test.application.response.EmployeeSalaryResponse;
+
+@Service
+public class EmployeePaymentService {
+	@Autowired
+    private EmployeePaymentRepository employeePaymentRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public EmployeeSalaryResponse calculateTotalPayment(EmployeeSalaryRequest request) {
+        EmployeeSalaryResponse response = new EmployeeSalaryResponse();
+
+        // Validar que el empleado exista
+        Optional<Employee> employeeOptional = employeeRepository.findById(request.getEmployeeId());
+
+        if (employeeOptional.isPresent()) {
+            Employee employee = employeeOptional.get();
+
+            // Validar que la fecha de inicio sea menor a la fecha de fin
+            if (request.getStartDate().isBefore(request.getEndDate())) {
+                // Calcular el monto total pagado al empleado en el rango de fechas
+                BigDecimal totalPayment = employeePaymentRepository.calculateTotalPayment(
+                        employee.getId(),
+                        request.getStartDate(),
+                        request.getEndDate()
+                );
+
+                response.setPayment(totalPayment);
+                response.setSuccess(true);
+            } else {
+                response.setPayment(null);
+                response.setSuccess(false);
+            }
+        } else {
+            response.setPayment(null);
+            response.setSuccess(false);
+        }
+
+        return response;
+    }
+}

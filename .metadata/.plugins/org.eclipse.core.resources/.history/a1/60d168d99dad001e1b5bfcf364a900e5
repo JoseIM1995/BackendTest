@@ -1,0 +1,19 @@
+package com.test.application.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.test.application.request.EmployeeWorkedHoursRangeRequest;
+import com.test.application.response.EmployeeWorkedHoursRangeResponse;
+import com.test.application.service.EmployeeWorkedHoursRangeService;
+
+public class EmployeeWorkedHoursRangeController {
+	@Autowired
+    private EmployeeWorkedHoursRangeService employeeWorkedHoursRangeService;
+
+    @PostMapping("/get-total-hours")
+    public EmployeeWorkedHoursRangeResponse getTotalWorkedHours(@RequestBody EmployeeWorkedHoursRangeRequest request) {
+        return employeeWorkedHoursRangeService.getTotalWorkedHours(request);
+    }
+}

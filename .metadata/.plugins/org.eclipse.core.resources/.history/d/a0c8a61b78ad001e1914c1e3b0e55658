@@ -1,0 +1,5 @@
+package com.test.application.respository;
+
+public interface GenderRepository JpaRepository<Gender, Integer>{
+
+}

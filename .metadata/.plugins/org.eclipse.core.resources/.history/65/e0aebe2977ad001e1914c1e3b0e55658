@@ -1,0 +1,5 @@
+package com.test.application.respository;
+
+public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
+
+}

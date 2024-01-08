@@ -1,0 +1,72 @@
+package com.test.application.entity;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "EMPLOYEES")
+public class EmployeeByJob {
+	@Id
+    private Integer id;
+
+    private String name;
+    private String lastName;
+    private Date birthdate;
+
+    @ManyToOne
+    @JoinColumn(name = "GENDER_ID")
+    private Gender gender;
+
+    @ManyToOne
+    @JoinColumn(name = "JOB_ID")
+    private Job job;
+
+    // Getters y setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+
+    public void setJob(Job job) {
+        this.job = job;
+    }
+}

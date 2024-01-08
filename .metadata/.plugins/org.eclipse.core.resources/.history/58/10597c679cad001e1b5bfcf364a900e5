@@ -1,0 +1,5 @@
+package com.test.application.response;
+
+public class EmployeeWorkedHoursRangeResponse {
+
+}
